@@ -10,9 +10,9 @@
 | 日志 | ELK | EFK |
 | 链路追踪 | Sleuth+Zipkin/Skywalking | Istio |
 | 监控 | Spectator+Atlas+Servo | Prometheus+Grafana |
-| 数据库 | Mysql + Seata + Canal |
+| 数据库 | Mysql+Seata+Canal |
 | 缓存 | Redis |
-| 消息队列 | Stream + Kafka |
+| 消息队列 | Stream+Kafka |
 | 协调服务 | Zookeeper |
 | 代理 | Nginx/Haproxy |
 
@@ -25,6 +25,6 @@
 ## middleware-app
 - 基于Spring Cloud的微服务调用中间件框架
   - Redis
-  - Kafka + Stream
+  - Kafka+Stream
   - Zookeeper
-  - Mysql + Seata + Canal
+  - Mysql+Seata+Canal
