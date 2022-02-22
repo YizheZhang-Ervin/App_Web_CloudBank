@@ -1,4 +1,4 @@
-package cn.ervin.gateway;
+package com.ervin.gateway;
 
 import com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants;
 import com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition;

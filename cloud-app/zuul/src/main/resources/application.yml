@@ -6,14 +6,17 @@ spring:
 ##路由配置
 zuul:
   routes:
-    service-producer: # 路由id
+    serviceproducer: # 路由id
       path: /service-producer/** # 映射路径
-      # url: http://127.0.0.1:9001 #映射路径对应的实际微服务url地址
-    serviceId: service-producer # 配置转发的微服务的服务名称
-    # 如果路由id 和 对应的微服务的serviceId一致的话
-    # service-producer: /service-producer/**
-    # zuul中的默认路由配置
-    # 如果当前的微服务名称 service-producer , 默认的请求映射路径 /service-producer/**
+      # url: http://127.0.0.1:8901 #映射路径对应的实际微服务url地址
+      serviceId: service-producer # 配置转发的微服务的服务名称
+      # 如果路由id 和 对应的微服务的serviceId一致的话
+      # service-producer: /service-producer/**
+      # zuul中的默认路由配置
+      # 如果当前的微服务名称 service-producer , 默认的请求映射路径 /service-producer/**
+    serviceconsumer:
+      path: /service-consumer/**
+      serviceId: service-consumer
 
 #配置Eureka
 eureka:
