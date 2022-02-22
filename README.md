@@ -21,12 +21,11 @@
 ## 2.架构
 ```
 - Spring Cloud
-  - 组合1: (Eureka+Config)+Zuul+Hystrix+Ribbon+Feign
-  - 组合2: (Nacos/Consul/Zookeeper)+Gateway+Sentinel+Ribbon+RestTemplate
+  - 组合1: (Eureka+Config)+(Zuul+Hystrix+Ribbon+Feign)+sleuth&zipkin
+  - 组合2: (Nacos/Consul/Zookeeper)+(Gateway+Sentinel+Ribbon+RestTemplate)+skywalking
 
 - Spring Cloud Kubernetes
-  - 组合1: (Coredns+ConfigMap)+Gateway+Hystrix+Ribbon+RestTemplate
-  - 组合2: (Coredns+ConfigMap)+Gateway+Hystrix+LoadBalancer+RestTemplate
+  - 组合1: (Coredns+ConfigMap)+Gateway+Hystrix+Ribbon/LoadBalancer+RestTemplate+sleuth&zipkin
 
 - Kubernetes
   - 组合1: (Coredns+ConfigMap)+Ingress+Istio+Service
@@ -57,3 +56,6 @@
   - Kafka+Stream
   - Zookeeper
   - Mysql+Seata+Canal
+  - Neo4j
+  - Elasticsearch
+  - spark/hdfs
