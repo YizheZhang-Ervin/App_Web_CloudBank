@@ -1,7 +1,7 @@
-package cn.ervin.serviceproducer.service;
+package com.ervin.serviceproducer.service;
 
-import cn.ervin.serviceproducer.mapper.UserMapper;
-import cn.ervin.serviceproducer.pojo.User;
+import com.ervin.serviceproducer.mapper.UserMapper;
+import com.ervin.serviceproducer.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

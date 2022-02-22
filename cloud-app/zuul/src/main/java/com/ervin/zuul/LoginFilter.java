@@ -1,4 +1,4 @@
-package com.ervin.zuul.filter;
+package com.ervin.zuul;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -65,6 +65,7 @@ public class LoginFilter extends ZuulFilter {
 		HttpServletRequest request = ctx.getRequest();
 		//3.获取请求参数access-token
 		String token = request.getParameter("access-token");
+		// System.out.println(token);
 		//4.判断
 		if (token ==null) {
 			//4.1 如果token==null ,拦截请求,返回认证失败

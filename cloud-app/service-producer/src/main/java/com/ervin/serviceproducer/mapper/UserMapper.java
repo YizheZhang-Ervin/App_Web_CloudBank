@@ -1,6 +1,6 @@
-package cn.ervin.serviceproducer.mapper;
+package com.ervin.serviceproducer.mapper;
 
-import cn.ervin.serviceproducer.pojo.User;
+import com.ervin.serviceproducer.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

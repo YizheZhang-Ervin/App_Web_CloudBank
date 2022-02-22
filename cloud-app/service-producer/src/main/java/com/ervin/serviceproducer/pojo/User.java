@@ -1,4 +1,4 @@
-package cn.ervin.serviceproducer.pojo;
+package com.ervin.serviceproducer.pojo;
 
 import lombok.Data;
 

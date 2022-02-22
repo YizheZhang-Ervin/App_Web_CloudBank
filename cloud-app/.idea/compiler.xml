@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,12 +11,16 @@
         <module name="hystrix-turbine" />
         <module name="service-producer" />
         <module name="service-consumer" />
+        <module name="zipkin-server" />
         <module name="zuul" />
         <module name="eureka-server" />
         <module name="feign-api" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="zipkin-server" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -26,6 +31,7 @@
       <module name="hystrix-turbine" options="-parameters" />
       <module name="service-consumer" options="-parameters" />
       <module name="service-producer" options="-parameters" />
+      <module name="zipkin-server" options="-parameters" />
       <module name="zuul" options="-parameters" />
     </option>
   </component>

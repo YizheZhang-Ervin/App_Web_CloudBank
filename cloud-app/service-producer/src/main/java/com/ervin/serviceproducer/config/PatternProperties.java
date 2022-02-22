@@ -1,4 +1,4 @@
-package cn.ervin.serviceproducer.config;
+package com.ervin.serviceproducer.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

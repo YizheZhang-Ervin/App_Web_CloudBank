@@ -3,11 +3,21 @@ server:
 spring:
   application:
     name: config-server #指定服务名
+  profiles:
+    active: composite
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     config:
       server:
-        git:
-          uri: https://xx.git
+#        git:
+#          uri: https://xxgit/xxrepo
+#          skipSslValidation: true
+        composite:
+          - type: native
+            search-locations: classpath:/
+        bootstrap: true
 management:
   endpoints:
     web:
