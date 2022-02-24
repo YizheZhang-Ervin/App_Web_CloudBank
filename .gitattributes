@@ -1,10 +1,3 @@
-*.md linguist-language=java
-*.xml linguist-language=java 
-*.yml linguist-language=java
-*.properties linguist-language=java
-*.json linguist-language=java
-*.conf linguist-language=java
-*.sh linguist-language=java
 *.html linguist-language=java
 *.css linguist-language=java
 *.js linguist-language=java

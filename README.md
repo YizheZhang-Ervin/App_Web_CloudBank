@@ -19,12 +19,12 @@
 | 代理 | Nginx/Haproxy |
 
 ## 2.架构
-| 方案 | 注册中心 | 配置中心 | 网关 | 微服务保护 | 负载均衡 | 服务调用 | 链路追踪 |
-| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 1) Cloud | Eureka | Config | Zuul | Hystrix | Ribbon | Feign | Sleuth&Zipkin |
-| 2) Cloud | Nacos | Nacos | Gateway | Sentinel | Ribbon | RestTemplate | Skywalking |
-| 3) Cloud K8S | K8S-Discovery | K8S-Config | Gateway | K8S-Hystrix | K8S-Ribbon&K8S-LoadBalancer | Feign | Sleuth&K8S-Zipkin |
-| 4) K8S | CoreDNS | Configmap+Secret | Ingress | Istio | Service | Service | Istio |
+| 方案 | 注册中心 + 配置中心 + 网关 + 微服务保护 + 负载均衡 + 服务调用 + 链路追踪 |
+| ------ | ------ |
+| 1) Cloud | Eureka + Config + Zuul + Hystrix + Ribbon + Feign + Sleuth&Zipkin |
+| 2) Cloud | Nacos + Nacos + Gateway + Sentinel + Ribbon + RestTemplate + Skywalking |
+| 3) Cloud K8S | K8S-Discovery + K8S-Config + Gateway + K8S-Hystrix + K8S-Ribbon&K8S-LoadBalancer + Feign + Sleuth&K8S-Zipkin |
+| 4) K8S | CoreDNS + Configmap+Secret + Ingress + Istio + Service + Service + Istio |
 
 ## 3. SpringCloudK8S相关依赖
 - 注册中心
