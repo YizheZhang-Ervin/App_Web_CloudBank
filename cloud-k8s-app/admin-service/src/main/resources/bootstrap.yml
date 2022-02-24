@@ -1,6 +1,8 @@
+server:
+  port: 9001 #端口
 spring:
   applicaton:
-    name: admin
+    name: admin-service
   cloud:
     kubernetes:
       discovery:

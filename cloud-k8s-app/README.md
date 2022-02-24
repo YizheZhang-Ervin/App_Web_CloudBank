@@ -1,62 +1,73 @@
-# cloud-k8s-app
-
-## 脚本
-```
-minikube start --vm-driver=virtualbox --memory='4000mb'
-mvn clean install
-docker build -t xx:1.0 .
-/kubernetes $ kubectl apply -f xx.yaml
-kubectl get pods
-
-# deploy all
-skaffold dev
-```
+# cloud-app
 
 # 一、微服务
-## 1.服务调用方
+## 1.生产者&消费者
 ```
-- employee-service
-    - k8s discovery
-    - actuator / sleuth
-    - mongoDB
-    - employee CRUD
-- department-service
-    - k8s discovery
-    - k8s loadbalancer
-    - feign
-    - resilience4j
-    - actuator / sleuth
-    - mongoDB
-    - department CRUD with employee-service
-- organization-service
-    - k8s discovery
-    - feign
-    - organization CRUD with department-service & employee-service
+- (OK) service-producer: 8901
+  - /user/{id}
+  - /user/prop
+  - /user/now
+  - /user/config
+  - /actuator
+  - 有sleuth+zipkin
+
+- (OK) service-consumer: 8902
+  - /order/{orderId}
+  - /actuator
+  - /actuator/hystrix.stream
+  - 有feign
+  - 有sleuth+zipkin
+
+- (OK) admin-service: 8903
+  - Actuator应用监控中心
 ```
 
-## 2.网关&管理
+## 2.注册中心&配置中心
 ```
-- gateway-service
-    - gateway
-    - sleuth
-- admin-service
-    - adminserver
-    - security
-    - Spring Boot Admin Server
-- config-service
-  - k8s config
+# 注册中心
+- (OK) Kubernetes CoreDNS
+  - K8S Discovery
+
+# 配置中心
+- (OK) config-service: 9001
+  - K8S Config
 ```
+
+## 3.服务调用&负载均衡&微服务保护
+```
+# 服务调用&负载均衡
+- (OK) feign-api
+  - 集成K8S Ribbon & K8S LoadBalancer
+
+# 微服务保护
+- (OK) hystrix-turbine: 9003
+  - http://localhost:8901/actuator/hystrix.stream
+  - /hystrix
+```
+
+## 4.网关
+```
+- (OK) gateway: 9002
+  - 已集成Sentinel
+```
+
+## 5.链路追踪
+```
+- (X) Sleuth+Zipkin
+  - 要集成zipkin-server: 9004
+```
+
+---
 
 # 二、中间件
-## 1.Kubernetes&MongoDB
-```
-- k8s
-  - privileges.yaml
-    - Role and RoleBinding (access Kubernetes API from pod)
-  - mongo-secret.yaml
-    - credentials for MongoDB
-  - mongo-configmap.yaml
-    - user for MongoDB
-  - mongo-deployment.yaml
-    - Deployment for MongoDB
-```
+## 1.Database: test
+- Table: clouduser
+  - id
+  - username
+  - info
+
+- Table: cloudorder
+  - id
+  - name
+  - description
+  - userId

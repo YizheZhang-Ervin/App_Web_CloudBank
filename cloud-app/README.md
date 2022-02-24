@@ -27,13 +27,6 @@
 # 配置中心
 - (X) config-server: 9001
   - 要集成rabbitmq: 5672
-- (X) Apollo
-- (X) Disconf
-
-# 注册+配置中心
-- (X) Consul
-- (X) Nacos
-- (X) Zookeeper
 ```
 
 ## 3.服务调用&负载均衡&微服务保护
@@ -66,20 +59,6 @@
 ```
 - (X) Sleuth+Zipkin
   - 要集成zipkin-server: 9004
-
-- (X) Skywalking
-```
-
-## 6.度量监控
-```
-- (X) Prometheus+Grafana
-
-- (X) Spectator+Atlas+Servo
-```
-
-## 7.日志
-```
-- (X) ELK
 ```
 
 ---
@@ -91,7 +70,7 @@
   - username
   - info
 
-- Table: cloudrrder
+- Table: cloudorder
   - id
   - name
   - description

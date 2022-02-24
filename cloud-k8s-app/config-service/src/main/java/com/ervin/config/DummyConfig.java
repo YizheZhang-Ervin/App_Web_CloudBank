@@ -5,11 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @Description: 配置类，此处可以加载配置文件中的内容
- * @author: willzhao E-mail: zq2599@gmail.com
- * @date: 2019/7/27 18:24
  */
-@Configuration
-@ConfigurationProperties(prefix = "greeting")
+@Configuration(proxyBeanMethods = false)
+@ConfigurationProperties(prefix = "dummy")
 public class DummyConfig {
 
     private String message = "This is a dummy message";

@@ -1,3 +1,5 @@
+server:
+  port: 9003 #端口
 management:
   endpoint:
     restart:
@@ -8,7 +10,7 @@ management:
       enabled: true
 spring:
   application:
-    name: springcloudk8sreloadconfigdemo
+    name: config-service
   cloud:
     kubernetes:
       reload:
@@ -20,5 +22,5 @@ spring:
         period: 500
       config:
         sources:
-        - name: ${spring.application.name}
-          namespace: default
+          - name: ${spring.application.name}
+            namespace: default
