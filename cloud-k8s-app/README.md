@@ -4,19 +4,23 @@
 ## 1.生产者&消费者
 ```
 - (OK) service-producer: 8901
-  - /user/{id}
-  - /user/prop
-  - /user/now
-  - /user/config
-  - /actuator
-  - 有sleuth+zipkin
+  - API
+    - /user/{id}
+    - /user/prop
+    - /user/now
+    - /user/config
+    - /actuator
+  - 技术  
+    - 有sleuth+zipkin
 
 - (OK) service-consumer: 8902
-  - /order/{orderId}
-  - /actuator
-  - /actuator/hystrix.stream
-  - 有feign
-  - 有sleuth+zipkin
+  - API
+    - /order/{orderId}
+    - /actuator
+    - /actuator/hystrix.stream
+  - 技术
+    - 有feign
+    - 有sleuth+zipkin
 
 - (OK) admin-service: 8903
   - Actuator应用监控中心
@@ -41,14 +45,17 @@
 
 # 微服务保护
 - (OK) hystrix-turbine: 9003
-  - http://localhost:8901/actuator/hystrix.stream
-  - /hystrix
+  - 接入地址
+    - http://localhost:8901/actuator/hystrix.stream
+  - API  
+    - /hystrix
 ```
 
 ## 4.网关
 ```
 - (OK) gateway: 9002
-  - 已集成Sentinel
+  - 技术
+    - 已集成Sentinel
 ```
 
 ## 5.链路追踪
