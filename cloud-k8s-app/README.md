@@ -78,3 +78,23 @@
   - name
   - description
   - userId
+
+---
+
+# 三、SpringCloudK8S相关依赖
+- 注册中心
+  - k8s-discovery 
+  - fabric8-discovery
+- 配置中心
+  - k8s-config/k8s-archaius
+  - fabric8-config
+- 微服务保护
+  - k8s-hystrix
+- 负载均衡/服务调用
+  - k8s-ribbon/k8s-loadbalancer
+  - fabric8-loadbalancer
+- 链路追踪
+  - k8s-zipkin
+- 其他
+  - k8s-leader/k8s-istio
+  - fabric8-leader/fabric8-istio

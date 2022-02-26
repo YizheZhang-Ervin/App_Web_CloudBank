@@ -27,6 +27,9 @@
 ```
 # 注册中心
 - (OK) eureka-server: 9000
+- (X) consul-server: 9000
+  - 要配合consul
+
 
 # 配置中心
 - (X) config-server: 9001
@@ -47,10 +50,6 @@
     - http://localhost:8901/actuator/hystrix.stream
   - API
     - /hystrix
-- (X) Sentinel
-  - 技术
-    - 配合Ribbon
-    - 配合RestTemplate
 ```
 
 ## 4.网关
@@ -68,7 +67,7 @@
 ## 5.链路追踪
 ```
 - (X) Sleuth+Zipkin
-  - 要集成zipkin-server: 9004
+  - 要配合zipkin-server: 9004
 ```
 
 ---

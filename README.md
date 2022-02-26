@@ -27,28 +27,10 @@
 | 3) Cloud K8S | K8S-Discovery + K8S-Config + Gateway + K8S-Hystrix + K8S-Ribbon&K8S-LoadBalancer + Feign + Sleuth&K8S-Zipkin |
 | 4) Istio K8S | Pilot/Envoy + Configmap&Secret + Ingress + Pilot/Envoy + Pilot/Envoy + Pilot/Envoy + OpenTracing |
 
-## 3. SpringCloudK8S相关依赖
-- 注册中心
-  - k8s-discovery 
-  - fabric8-discovery
-- 配置中心
-  - k8s-config/k8s-archaius
-  - fabric8-config
-- 微服务保护
-  - k8s-hystrix
-- 负载均衡/服务调用
-  - k8s-ribbon/k8s-loadbalancer
-  - fabric8-loadbalancer
-- 链路追踪
-  - k8s-zipkin
-- 其他
-  - k8s-leader/k8s-istio
-  - fabric8-leader/fabric8-istio
-
 # 二、项目结构
 ## 1.cloud-app
 - 基于Spring Cloud的微服务框架
-  - Eureka
+  - Eureka/Consul
   - Config
   - Gateway/Zuul
   - Hystrix
@@ -76,11 +58,10 @@
   - Sleuth&Zipkin
 
 ## 4.k8s-app
-- 基于Spring Cloud 和 Istio 和 K8S的微服务框架
-  - Istio Pilot/Envoy + K8S CoreDNS
-  - K8S Configmap/Secret
-  - K8S Ingress
-  - Istio Mixer/Adapter + OpenTracing
+- 基于Istio 和 K8S的微服务框架
+  - Istio Pilot/Envoy
+  - K8S Ingress Gateway
+  - RestTemplate
 
 ## 5.middleware-app
 - 中间件框架
