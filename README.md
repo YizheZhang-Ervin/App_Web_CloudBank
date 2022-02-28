@@ -9,7 +9,7 @@
 | 网关 | Zuul/Gateway | Ingress |
 | 微服务保护 | Hystrix+Turbine/Sentinel | Pilot/Envoy |
 | 负载均衡/服务调用 | RestTemplate/Feign+Ribbon/LoadBalancer | Pilot/Envoy |
-| 链路追踪 | Sleuth+Zipkin/Skywalking | Mixer+Adapter+OpenTracing/Skywalking/Zipkin |
+| 链路追踪 | Sleuth+Zipkin/Skywalking | Mixer+Adapter+Jaeger/Pinpoint/Skywalking/Zipkin |
 | 监控 | Spectator+Atlas+Servo/Prometheus+Grafana | Mixer+Adapter+Prometheus+Grafana |
 | 日志 | ELK | EFK |
 | 安全 | / | citadel |
@@ -25,7 +25,7 @@
 | 1) Cloud | Eureka + Config + Zuul + Hystrix + Ribbon + Feign + Sleuth&Zipkin |
 | 2) Cloud | Nacos + Nacos + Gateway + Sentinel + Ribbon + RestTemplate + Skywalking |
 | 3) Cloud K8S | K8S-Discovery + K8S-Config + Gateway + K8S-Hystrix + K8S-Ribbon&K8S-LoadBalancer + Feign + Sleuth&K8S-Zipkin |
-| 4) Istio K8S | Pilot/Envoy + Configmap&Secret + Ingress + Pilot/Envoy + Pilot/Envoy + Pilot/Envoy + OpenTracing |
+| 4) Istio K8S | Pilot/Envoy + Configmap&Secret + Ingress + Pilot/Envoy + Pilot/Envoy + Pilot/Envoy + Jaeger |
 
 # 二、项目结构
 ## 1.cloud-app
