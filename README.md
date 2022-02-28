@@ -2,22 +2,31 @@
 
 # 一、概述
 ## 1.技术对比
-| 功能 | Spring Cloud | Kubernetes |
-| ------ | ------ | ------ |
-| 注册中心 | Eureka/Nacos/Consul/Zookeeper | Pilot/Envoy+CoreDNS |
-| 配置中心 | Config+Bus/Nacos/Consul/Apollo/Disconf/Zookeeper | Configmap/Secret |
-| 网关 | Zuul/Gateway | Ingress |
-| 微服务保护 | Hystrix+Turbine/Sentinel | Pilot/Envoy |
-| 负载均衡/服务调用 | RestTemplate/Feign+Ribbon/LoadBalancer | Pilot/Envoy |
-| 链路追踪 | Sleuth+Zipkin/Skywalking | Mixer+Adapter+Jaeger/Pinpoint/Skywalking/Zipkin |
-| 监控 | Spectator+Atlas+Servo/Prometheus+Grafana | Mixer+Adapter+Prometheus+Grafana |
-| 日志 | ELK | EFK |
-| 安全 | / | citadel |
-| 数据库 | Mysql+Seata+Canal |
-| 缓存 | Redis |
-| 消息队列 | Stream+Kafka |
-| 协调服务 | Zookeeper |
-| 代理 | Nginx/Haproxy |
+- Spring Cloud
+  - 注册中心: Eureka/Nacos/Consul/Zookeeper
+  - 配置中心: Config+Bus/Nacos/Consul/Apollo/Disconf/Zookeeper
+  - 网关: Zuul/Gateway
+  - 微服务保护: Hystrix+Turbine/Sentinel
+  - 负载均衡/服务调用: RestTemplate/Feign+Ribbon/LoadBalancer
+
+- K8S & Istio
+  - 注册中心: Istio Pilot/Envoy+K8S CoreDNS
+  - 配置中心: K8S Configmap/Secret
+  - 网关: K8S Ingress
+  - 微服务保护: Istio Pilot/Envoy
+  - 负载均衡/服务调用: Istio Pilot/Envoy
+  - 监控/追踪/日志API: Istio Mixer/Adapter
+  - 安全: Istio citadel
+
+- 通用组件
+  - 链路追踪: Sleuth+Zipkin/Skywalking/Jaeger/Pinpoint
+  - 监控: Spectator+Atlas+Servo/Prometheus+Grafana
+  - 日志: ELK/EFK
+  - 数据库: Mysql+Seata+Canal
+  - 缓存: Redis
+  - 消息队列: Stream+Kafka
+  - 协调服务: Zookeeper
+  - 代理: Nginx/Haproxy
 
 ## 2.架构
 | 方案 | 注册中心 + 配置中心 + 网关 + 微服务保护 + 负载均衡 + 服务调用 + 链路追踪 |
