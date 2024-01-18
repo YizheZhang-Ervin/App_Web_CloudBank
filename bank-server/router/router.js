@@ -1,4 +1,4 @@
-let { loginHandler, uploadHandler } = require("../handler/base.js")
+let { Login, Upload } = require("../handler/base.js")
 
 let registerRoute = (app, upload) => {
     // main page
@@ -6,10 +6,10 @@ let registerRoute = (app, upload) => {
         res.render('index');
     })
     // API: upload api
-    app.post("/upload", upload.single("file"), uploadHandler)
+    app.post("/upload", upload.single("file"), Upload)
 
     // API: login
-    app.post("/login", loginHandler)
+    app.post("/login", Login)
 }
 
 module.exports = registerRoute
