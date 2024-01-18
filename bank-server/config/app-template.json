@@ -1,0 +1,8 @@
+{
+    "address": "0.0.0.0",
+    "port": "3000",
+    "uploadPath": "/home/share/upload/",
+    "useHttps": "yes",
+    "serverKeyPath": "./keys/server.key",
+    "serverCrtPath": "./keys/server.crt"
+}

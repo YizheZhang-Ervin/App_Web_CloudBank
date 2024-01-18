@@ -1,4 +1,4 @@
-import MyComponent from "./MyComponent.js"
+import MyComponent from "./components/MyComponent.js"
 
 const { createApp } = Vue
 
@@ -8,7 +8,7 @@ const app = createApp({
     data() {
         return {
             message: 'Hello Vue!',
-            displayComponent: false,
+            displayComponent: false
         }
     },
     mounted() {
@@ -31,4 +31,5 @@ const app = createApp({
     }
 })
 app.component("comp", MyComponent)
+app.use(ElementPlus);
 app.mount('#app')
