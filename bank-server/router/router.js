@@ -1,4 +1,5 @@
-let { Login, Upload } = require("../handler/baseHandler.js")
+let { Login } = require("../handler/public/loginHandler.js")
+let { Upload } = require("../handler/public/uploadHandler.js")
 
 let registerRoute = (app, upload) => {
     // main page
