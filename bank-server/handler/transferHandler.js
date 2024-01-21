@@ -1,7 +1,7 @@
 // 转出
-let transferOut = () => { }
+let TransferOut = () => { }
 
 // 转入
-let transferIn = () => { }
+let TransferIn = () => { }
 
-module.exports = {}
+module.exports = { TransferOut, TransferIn }

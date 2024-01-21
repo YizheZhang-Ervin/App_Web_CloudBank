@@ -1,7 +1,16 @@
 //开户
-let register = () => { }
+let Register = () => {
+
+}
 
 //销户
-let deregister = () => { }
+let Deregister = () => {
 
-module.exports = {}
+}
+
+// 核实身份
+let CheckUser = () => {
+
+}
+
+module.exports = { Register, Deregister, CheckUser }

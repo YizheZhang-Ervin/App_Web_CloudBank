@@ -2,43 +2,80 @@
 
 ## Technologies
 ```
-element-plus + vue + axios
-express
-etcd
+- element-plus + vue + axios
+- express
+- etcd
 
 # 依赖
-npm install etcd3
-npm install node-schedule
+- npm install etcd3
+- npm install node-schedule
 ```
 
 ## Features
 ```
-0. 基础 
-- 登录/退出/验证token
+1. 基础
 - etcd分布式锁
 - 定时任务
-- 记录&订单管理: 订单生成/取消/查询
-- 记入流水
 
-1. 开户/销户 (记录管理)
-- 开户，销户，核实身份，客户信息查询
+2. 公共服务
+- 登录/退出/验证token
+- 文件上传
+- 订单管理
+- 流水管理
+- 余额管理
+- 客户信息管理
+- 利率管理
 
-2. 存款/取款 (记入流水)
-- 存款，取款，账户余额查询
+3. 开户
+- 开户，销户，核实身份
+- 涉及：客户信息查询，订单管理
 
-3. 转账 (记入流水)
-- 转出，转入，账户余额查询
+4. 存款
+- 存款，取款
+- 涉及：余额查询，流水管理，客户信息查询，利率查询，订单管理
 
-4. 贷款/放款/还款 (订单管理/记入流水)
-- 贷款，还款，放款，利率查询
+5. 转账
+- 转出，转入
+- 涉及：余额查询，流水管理，客户信息查询
 
-5. 外汇买入/卖出 (订单管理)
-- 买入，卖出，汇率查询
+6. 贷款
+- 贷款，还款，放款
+- 涉及：余额查询，流水管理，客户信息查询，利率查询，订单管理
 
-6. 会计核算
+7. 外汇
+- 买入，卖出
+- 涉及：余额查询，流水管理，客户信息查询，利率查询，订单管理
+
+8. 会计核算
 - 对账
+- 涉及：余额查询，流水管理
 
-7. 保险 (订单管理)
-- 买入，卖出，条款查询
+9. 保险
+- 买入，卖出，保险赔付，条款查询
+- 涉及：余额查询，客户信息查询，订单管理
 
+```
+
+## https
+```
+# 生成服务器端私钥
+openssl genrsa -out server.key 1024 
+
+# 生成服务端公钥
+openssl rsa -in server.key -pubout -out server.pem
+
+# 生成CA私钥
+openssl genrsa -out ca.key 1024
+
+# 生成csr文件
+openssl req -new -key ca.key -out ca.csr
+
+# 生成自签名证书
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+
+# 生成server.csr文件
+openssl req -new -key server.key -out server.csr
+
+# 生成带有ca签名的证书
+openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
 ```

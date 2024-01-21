@@ -1,7 +1,4 @@
 // 比对流水和金额
-let compare = () => { }
+let CompareFlow = () => { }
 
-// 记入流水
-let record = () => { }
-
-module.exports = {}
+module.exports = { CompareFlow }

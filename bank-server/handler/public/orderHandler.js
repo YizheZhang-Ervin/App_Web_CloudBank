@@ -1,4 +1,4 @@
-const { ExistOfEtcd, GetOfEtcd, SetOfEtcd, DeleteOfEtcd } = require("../middleware/etcd.js")
+const { ExistOfEtcd, GetOfEtcd, SetOfEtcd, DeleteOfEtcd } = require("../../middleware/etcd.js")
 
 // 订单生成
 let GenOrder = (type, userId, content) => {
@@ -14,7 +14,11 @@ let CancelOrder = (type, userId, content) => {
 // 查询
 let GetOrder = (type, userId, content) => {
     let key = `${type}/${userId}/${content}`
-    return GetOfEtcd(key)
+    if (ExistOfEtcd(key)) {
+        return GetOfEtcd(key)
+    } else {
+        return false
+    }
 }
 
 module.exports = {

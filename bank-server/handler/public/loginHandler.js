@@ -1,13 +1,6 @@
-const { ExistOfEtcd, GetOfEtcd } = require("../middleware/etcd.js")
+const { ExistOfEtcd, GetOfEtcd } = require("../../middleware/etcd.js")
+const { MakeResponse } = require("../../utils/goResponse.js")
 
-// TOOL: response JSON
-let assembleResJson = (flag, data, msg) => {
-    return {
-        code: flag ? "OK" : "ERR",
-        data: data,
-        msg: msg
-    }
-}
 
 // 登录
 // username+pwd => 判断username存在(etcd的key) 
@@ -18,7 +11,7 @@ let Login = (req, res) => {
     // IF 用户不存在
     if (!ExistOfEtcd(username)) {
         res.status(200)
-        let resObj = assembleResJson(false, "", `用户不存在`)
+        let resObj = MakeResponse(false, "", `用户不存在`)
         res.send(resObj)
         return
     }
@@ -28,11 +21,11 @@ let Login = (req, res) => {
     let nowToken = Buffer.from(username + "#" + pwd).toString('base64')
     if (storedToken == nowToken) {
         res.status(200)
-        let resObj = assembleResJson(true, `${nowToken}`, `OK`)
+        let resObj = MakeResponse(true, `${nowToken}`, `OK`)
         res.send(resObj)
     } else {
         res.status(200)
-        let resObj = assembleResJson(false, "", `用户名or密码错误`)
+        let resObj = MakeResponse(false, "", `用户名or密码错误`)
         res.send(resObj)
     }
 }
@@ -62,38 +55,25 @@ let VerifyToken = (req) => {
             if (token == storedToken) {
                 // 组装token返回响应
                 res.status(200)
-                let resObj = assembleResJson(true, `${token}`, `OK`)
+                let resObj = MakeResponse(true, `${token}`, `OK`)
                 res.send(resObj)
             } else {
                 res.status(200)
-                let resObj = assembleResJson(false, "", `token不正确`)
+                let resObj = MakeResponse(false, "", `token不正确`)
                 res.send(resObj)
             }
         } else {
             res.status(200)
-            let resObj = assembleResJson(false, "", `token不正确`)
+            let resObj = MakeResponse(false, "", `token不正确`)
             res.send(resObj)
         }
     } else {
         res.status(200)
-        let resObj = assembleResJson(false, "", `token不正确`)
+        let resObj = MakeResponse(false, "", `token不正确`)
         res.send(resObj)
     }
-}
-let Upload = (req, res, func) => {
-    // 验证请求头
-    if (!VerifyToken(req)) {
-        res.status(200)
-        let resObj = assembleResJson(false, null, `ERR: 验证身份失败`)
-        res.send(resObj)
-        return
-    }
-    req.setEncoding('utf-8');
-    const uploadedFile = req.file
-    // 处理上传的文件
-    func(uploadedFile)
 }
 
 module.exports = {
-    Login, Logout, VerifyToken, Upload
+    Login, Logout, VerifyToken
 }

@@ -1,8 +1,10 @@
 // 买保险
-let buy = () => { }
+let BuyInsurance = () => { }
 // 卖保险
-let sell = () => { }
+let SellInsurance = () => { }
 // 保险赔付
-let claim = () => { }
+let ClaimInsurance = () => { }
+// 条款查询
+let GetAgreement = () => { }
 
-module.exports = {}
+module.exports = { BuyInsurance, SellInsurance, ClaimInsurance, GetAgreement }

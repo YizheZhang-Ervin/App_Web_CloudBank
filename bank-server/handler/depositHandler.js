@@ -1,7 +1,7 @@
 // 存款
-let deposit = () => { }
+let Deposit = () => { }
 
 // 取款
-let withdraw = () => { }
+let Withdraw = () => { }
 
-module.exports = {}
+module.exports = { Deposit, Withdraw }

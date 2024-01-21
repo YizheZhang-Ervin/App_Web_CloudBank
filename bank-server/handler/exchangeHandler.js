@@ -1,6 +1,6 @@
 // 外汇买入
-let buy = () => { }
+let BuyExchange = () => { }
 // 外汇卖出
-let sell = () => { }
+let SellExchange = () => { }
 
-module.exports = {}
+module.exports = { BuyExchange, SellExchange }
