@@ -2,7 +2,8 @@ let flowEntity = {
     inUserId: "",
     outUserId: "",
     amount: "",
-    type: ""
+    type: "",
+    date: ""
 }
 
 module.exports = {

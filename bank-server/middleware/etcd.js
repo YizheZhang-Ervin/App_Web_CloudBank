@@ -1,12 +1,13 @@
 const { Etcd3 } = require('etcd3');
+let config = require("../config/app.json")
 
 // 连接客户端
 let conf = {
-    hosts: "127.0.0.1:2379",
-    auth: {
-        username: 'root',
-        password: 'password',
-    }
+    hosts: config["etcd"] || "127.0.0.1:2379",
+    // auth: {
+    //     username: 'root',
+    //     password: 'root',
+    // }
 }
 const client = new Etcd3(conf);
 
@@ -26,8 +27,8 @@ let ExistOfEtcd = async (key) => {
 }
 
 // 根据前缀取值
-let GetOfEtcdByPrefix = async () => {
-    return await client.getAll().prefix('f').strings()
+let GetOfEtcdByPrefix = async (prefix) => {
+    return await client.getAll().prefix(prefix).json()
 }
 
 // 删值
@@ -36,10 +37,10 @@ let DeleteOfEtcd = async (key) => {
 }
 
 // 分布式锁
-let LockByEtcd = async (key, func) => {
+let LockByEtcd = async (key, func, params) => {
     const lock1 = client.lock(key);
     await lock1.acquire();
-    await func()
+    await func(...params)
     await lock1.release();
 }
 

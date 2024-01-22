@@ -3,7 +3,6 @@ let userInfoEntity = {
     username: "",
     password: "",
     token: "",
-    loginStatus: "",
     accountStatus: ""
 }
 

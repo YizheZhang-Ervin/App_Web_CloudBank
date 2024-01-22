@@ -1,43 +1,51 @@
-const { ExistOfEtcd, GetOfEtcd } = require("../../middleware/etcd.js")
+const { ExistOfEtcd, GetOfEtcd, SetOfEtcd } = require("../../middleware/etcd.js")
 const { MakeResponse } = require("../../utils/goResponse.js")
 
+// POST 登录
+let Login = async (req, res) => {
+    let userId = req.body["userId"]
+    let pwd = req.body["password"]
+    let storeKey = `user/${userId}`
 
-// 登录
-// username+pwd => 判断username存在(etcd的key) 
-// => username&pwd组装token => 和存储的内容比较(etcd的value)
-let Login = (req, res) => {
-    let username = req.body["username"]
-    let pwd = req.body["pwd"]
     // IF 用户不存在
-    if (!ExistOfEtcd(username)) {
-        res.status(200)
-        let resObj = MakeResponse(false, "", `用户不存在`)
-        res.send(resObj)
+    if (!ExistOfEtcd(storeKey)) {
+        MakeResponse(res, false, "", `用户不存在or密码不正确`)
         return
-    }
-    // 查出来存储的token
-    let storedToken = GetOfEtcd(username)
-    // 新生成的token
-    let nowToken = Buffer.from(username + "#" + pwd).toString('base64')
-    if (storedToken == nowToken) {
-        res.status(200)
-        let resObj = MakeResponse(true, `${nowToken}`, `OK`)
-        res.send(resObj)
     } else {
-        res.status(200)
-        let resObj = MakeResponse(false, "", `用户名or密码错误`)
-        res.send(resObj)
+        let userJson = await GetOfEtcd(storeKey)
+        // 比对密码
+        let passedPwd = Buffer.from(pwd).toString('base64')
+        let userInfoObj = JSON.parse(userJson)
+        let storePwd = userInfoObj["password"]
+        // 生成token
+        let token = Buffer.from(userId + "#" + pwd).toString('base64')
+        userInfoObj["token"] = token
+        let userInfoObjNew = JSON.stringify(userInfoObj)
+        // token写库
+        await LockByEtcd(storeKey, SetOfEtcd, [storeKey, userInfoObjNew])
+        // 返回响应
+        if (passedPwd === storePwd) {
+            MakeResponse(res, true, token, "登录成功")
+        } else {
+            MakeResponse(res, true, null, "用户不存在or密码不正确")
+        }
     }
 }
 
-// 退出
-let Logout = (req, res) => {
-    // TODO: 退出
+// POST 退出
+let Logout = async (req, res) => {
+    let userId = req.body["userId"]
+    let storeKey = `user/${userId}`
+
+    let userJson = await GetOfEtcd(storeKey)
+    let userInfoObj = JSON.parse(userJson)
+    userInfoObj["token"] = ""
+    let userInfoObjNew = JSON.stringify(userInfoObj)
+    await LockByEtcd(storeKey, SetOfEtcd, [storeKey, userInfoObjNew])
+    MakeResponse(res, true, null, "登出成功")
 }
 
-// TOOL: 验证token
-// 请求头获取Authorization(即token) => 解析token
-// => 根据username查存储的token => 对比token和存储的token
+// 验证token
 let VerifyToken = (req) => {
     const token = req.get('Authorization')
     if (!token) {
@@ -48,29 +56,26 @@ let VerifyToken = (req) => {
     if (tokenStr) {
         let tokenList = tokenStr.split("#")
         if (tokenList.length == 2) {
-            let decodeUserName = tokenList[0]
-            let decodePwd = tokenList[1]
-            // 判断密码是否正确
-            let storedToken = GetOfEtcd(decodeUserName)
-            if (token == storedToken) {
-                // 组装token返回响应
-                res.status(200)
-                let resObj = MakeResponse(true, `${token}`, `OK`)
-                res.send(resObj)
+            let decodeUserId = tokenList[0]
+            let storeKey = `user/${decodeUserId}`
+            // 判断是否一致
+            let userInfoJson = GetOfEtcd(storeKey)
+            let userInfoObj = JSON.parse(userInfoJson)
+            if (userInfoObj != null) {
+                let storeToken = userInfoObj["token"]
+                if (storeToken == token) {
+                    return true
+                } else {
+                    return false
+                }
             } else {
-                res.status(200)
-                let resObj = MakeResponse(false, "", `token不正确`)
-                res.send(resObj)
+                return false
             }
         } else {
-            res.status(200)
-            let resObj = MakeResponse(false, "", `token不正确`)
-            res.send(resObj)
+            return false
         }
     } else {
-        res.status(200)
-        let resObj = MakeResponse(false, "", `token不正确`)
-        res.send(resObj)
+        return false
     }
 }
 

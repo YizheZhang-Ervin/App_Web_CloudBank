@@ -4,5 +4,6 @@
     "uploadPath": "/home/share/upload/",
     "useHttps": "yes",
     "serverKeyPath": "./keys/server.key",
-    "serverCrtPath": "./keys/server.crt"
+    "serverCrtPath": "./keys/server.crt",
+    "etcd": "127.0.0.1:2379"
 }
