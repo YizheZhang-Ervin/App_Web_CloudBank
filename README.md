@@ -53,7 +53,7 @@
 
 ```
 
-## https
+## Https
 ```
 # 生成服务器端私钥
 openssl genrsa -out server.key 1024 
@@ -75,4 +75,29 @@ openssl req -new -key server.key -out server.csr
 
 # 生成带有ca签名的证书
 openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
+```
+
+## Etcd Entity
+```
+# balance
+- key: balance/${userId}
+- value: {currency1,currency2}
+
+# flow
+- key: flow/${inUserId}_${outUserId}_${type}_${date}
+- value: {inUserId, outUserId, amount, type, date}
+
+# order
+- key: order/${userId}/${uniqueId}
+- value: {userId, content, type, date}
+
+# rate
+- key: ${rateKey}/${productId}
+    - rateKey分为deposit/loan/exchange
+- value: {rate}
+
+# userInfo
+- key: user/${userId}
+- value: {userId, username, password, token, accountStatus}
+
 ```

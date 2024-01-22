@@ -3,6 +3,8 @@ const { MakeResponse } = require("../utils/goResponse.js")
 
 // 存款
 let Deposit = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 利率查询
     // 变更balance
     // 记入流水
@@ -11,6 +13,8 @@ let Deposit = async (req, res) => {
 
 // 取款
 let Withdraw = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 利率查询
     // 变更balance

@@ -3,17 +3,23 @@ const { MakeResponse } = require("../utils/goResponse.js")
 
 // 买保险
 let BuyInsurance = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 变更balance
     // 记入订单
 }
 // 卖保险
 let SellInsurance = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 变更balance
     // 记入订单
 }
 // 保险赔付
 let ClaimInsurance = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 查询订单
     // 变更balance
 }

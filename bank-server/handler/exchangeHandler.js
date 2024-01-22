@@ -3,6 +3,8 @@ const { MakeResponse } = require("../utils/goResponse.js")
 
 // 外汇买入
 let BuyExchange = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 利率查询
     // 变更balance
@@ -11,6 +13,8 @@ let BuyExchange = async (req, res) => {
 }
 // 外汇卖出
 let SellExchange = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 利率查询
     // 变更balance

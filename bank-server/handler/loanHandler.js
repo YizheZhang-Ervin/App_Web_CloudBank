@@ -14,6 +14,8 @@ let BorrowLoan = async (req, res) => {
 
 // 归还(还款)
 let RepayLoan = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 变更balance
     // 生成流水
@@ -22,6 +24,8 @@ let RepayLoan = async (req, res) => {
 
 // 借出(放款)
 let LendLoan = async (req, res) => {
+    let userId = req.body["userId"]
+
     // 检查balance
     // 变更balance
     // 生成流水
