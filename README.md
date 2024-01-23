@@ -31,23 +31,23 @@
 
 4. 存款
 - 存款，取款
-- 简化为存到一个集中账户(Bank001)
+- 简化为固定期现1年，存到一个集中账户(Bank001)
 
-5. 转账
+5. 转账【TODO】
 - 转出，转入
 
-6. 贷款
+6. 贷款【TODO】
 - 贷款，还款，放款，信用查询(外呼)
 - 简化为还贷/放贷/贷款都和一个集中账户交互(Bank001)
 
-7. 外汇
+7. 外汇【TODO】
 - 买入，卖出
 - 简化为买入卖出都和一个集中账户进行操作(Bank001)
 
-8. 会计核算
+8. 会计核算【TODO】
 - 对账(外呼)
 
-9. 保险
+9. 保险【TODO】
 - 买入，卖出，保险赔付，条款查询
 - 简化为可以卖无限份保险，赔付固定金额，无保障期限，与一个集中账户进行交互(Bank001)
 
@@ -89,7 +89,7 @@ openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out s
 
 # order
 - key: order/${userId}/${uniqueId}
-- value: {userId, content, type, date}
+- value: {userId, content:{rate,amount,currencyType}, type, date, status}
 
 # rate
 - key: ${rateKey}/${productId}

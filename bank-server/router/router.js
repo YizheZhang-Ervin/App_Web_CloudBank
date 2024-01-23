@@ -3,7 +3,7 @@ let { Login, Logout } = require("../handler/public/loginHandler.js")
 let { GetUserInfo, UpdateUserInfo } = require("../handler/public/userInfoHandler.js")
 let { GetBalance, UpdateBalance } = require("../handler/public/balanceHandler.js")
 let { RecordFlow, GetFlow } = require("../handler/public/flowHandler.js")
-let { GenOrder, CancelOrder, GetOrder } = require("../handler/public/orderHandler.js")
+let { GenOrder, CancelOrder, GetOrder, GetOrderOne, CloseOrder } = require("../handler/public/orderHandler.js")
 let { GetDepositRate, GetLoanRate, GetExchangeRate,
     UpdateDepositRate, UpdateLoanRate, UpdateExchangeRate } = require("../handler/public/rateHandler.js")
 let { CompareFlow } = require("../handler/accountingHandler.js")
@@ -42,6 +42,8 @@ let registerRoute = (app, upload) => {
     app.post("/order", GenOrder)
     app.delete("/order", CancelOrder)
     app.get("/order", GetOrder)
+    app.get("/order/one", GetOrderOne)
+    app.put("/order", CloseOrder)
 
     // API: rate
     app.get("/drate", GetDepositRate)

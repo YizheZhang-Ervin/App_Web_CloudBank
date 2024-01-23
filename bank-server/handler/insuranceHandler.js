@@ -1,25 +1,24 @@
 const { GetOfEtcd, SetOfEtcd, LockByEtcd } = require("../middleware/etcd.js")
 const { MakeResponse } = require("../utils/goResponse.js")
+const { GetBalance, UpdateBalance } = require("./public/balanceHandler.js")
+const { RecordFlow, GetFlow } = require("./public/flowHandler.js")
+const { GenOrder, CancelOrder, GetOrder, GetOrderOne, CloseOrder } = require("./public/orderHandler.js")
+const { GetDepositRate, GetLoanRate, GetExchangeRate,
+    UpdateDepositRate, UpdateLoanRate, UpdateExchangeRate } = require("./public/rateHandler.js")
 
 // 买保险
 let BuyInsurance = async (req, res) => {
-    let userId = req.body["userId"]
-
-    // 检查balance
+    // 检查余额是否充足
     // 变更balance
     // 记入订单
 }
 // 卖保险
 let SellInsurance = async (req, res) => {
-    let userId = req.body["userId"]
-
     // 变更balance
     // 记入订单
 }
 // 保险赔付
 let ClaimInsurance = async (req, res) => {
-    let userId = req.body["userId"]
-
     // 查询订单
     // 变更balance
 }

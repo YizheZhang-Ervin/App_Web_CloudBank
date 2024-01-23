@@ -8,22 +8,22 @@ let getRate = async (req, res, key) => {
     // 取值
     let productJson = await GetOfEtcd(storeKey);
     // 返回响应
-    MakeResponse(res, true, productJson, "获取成功")
+    return MakeResponse(res, true, productJson, "获取成功")
 }
 
 // GET 获取存款利率
 let GetDepositRate = async (req, res) => {
-    await getRate(req, res, "deposit")
+    return await getRate(req, res, "deposit")
 }
 
 // GET 获取贷款利率
 let GetLoanRate = async (req, res) => {
-    await getRate(req, res, "loan")
+    return await getRate(req, res, "loan")
 }
 
 // GET 获取外汇汇率
 let GetExchangeRate = async (req, res) => {
-    await getRate(req, res, "exchange")
+    return await getRate(req, res, "exchange")
 }
 
 // 工具：调整利率
@@ -38,22 +38,22 @@ let updateRate = async (req, res, key) => {
     // 加锁设值
     await LockByEtcd(key, SetOfEtcd, [key, rateObjNew])
     // 返回响应
-    MakeResponse(res, true, delta, "更新成功")
+    return MakeResponse(res, true, delta, "更新成功")
 }
 
 // POST 调整存款利率
 let UpdateDepositRate = async (req, res) => {
-    await updateRate(req, res, "deposit")
+    return await updateRate(req, res, "deposit")
 }
 
 // POST 调整贷款利率
 let UpdateLoanRate = async (req, res) => {
-    await updateRate(req, res, "loan")
+    return await updateRate(req, res, "loan")
 }
 
 // POST 调整外汇汇率
 let UpdateExchangeRate = async (req, res) => {
-    await updateRate(req, res, "exchange")
+    return await updateRate(req, res, "exchange")
 }
 
 module.exports = {
